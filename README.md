@@ -4,6 +4,8 @@
 
 **DualCache.NET** is a versatile caching library for .NET that provides seamless integration with both Redis and in-memory caching solutions. Enhance your application’s performance by reducing database load and improving response times effortlessly.
 
+![Build Status](https://github.com/guliv3r/DualCache.NET/actions/workflows/build-test.yml/badge.svg)
+
 ## Features
 
 - **Multi-Cache Support**: Switch between Redis and in-memory caching based on your needs.
