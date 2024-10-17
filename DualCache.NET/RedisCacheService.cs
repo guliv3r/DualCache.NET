@@ -1,4 +1,5 @@
 ﻿using StackExchange.Redis;
+using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
@@ -25,20 +26,20 @@ namespace DualCache.NET
 
         public async Task SetAsync<T>(string key, T value, TimeSpan? expiration = null)
         {
+            if (expiration.HasValue && expiration.Value <= TimeSpan.Zero)
+            {
+                expiration = null;
+            }
+
             var serializedValue = JsonSerializer.Serialize(value, SerializerOptions);
             await _redisDb.StringSetAsync(key, serializedValue, expiration);
         }
 
-        public async Task<T?> GetAsync<T>(string key)
+        public async Task<T> GetAsync<T>(string key)
         {
             RedisValue value = await _redisDb.StringGetAsync(key);
 
-            if (!value.HasValue)
-            {
-                return default;
-            }
-
-            return JsonSerializer.Deserialize<T>(value, SerializerOptions);
+            return Deserialize<T>(value);
         }
 
         public async Task RemoveAsync(string key)
@@ -51,13 +52,40 @@ namespace DualCache.NET
             RedisValue value = await _redisDb.StringGetAsync(key);
             if (value.HasValue)
             {
-                return JsonSerializer.Deserialize<T>(value, SerializerOptions);
+                return Deserialize<T>(value);
             }
 
             var newValue = await factory();
             await SetAsync(key, newValue, expiration);
 
             return newValue;
+        }
+
+        public async Task<bool> ExistsAsync(string key)
+        {
+            try
+            {
+                return await _redisDb.KeyExistsAsync(key);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        private static T? Deserialize<T>(RedisValue? value)
+        {
+            if(value is null) { return default; }
+
+            try
+            {
+                return JsonSerializer.Deserialize<T>(value, SerializerOptions);
+            }
+            catch (Exception)
+            {
+                return default;
+            }
+            
         }
 
         [ExcludeFromCodeCoverage]

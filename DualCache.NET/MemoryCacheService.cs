@@ -58,6 +58,12 @@ namespace DualCache.NET
             return value;
         }
 
+        public Task<bool> ExistsAsync(string key)
+        {
+            return Task.FromResult(_memoryCache.TryGetValue(key, out _));
+        }
+
+
         [ExcludeFromCodeCoverage]
         public void Dispose()
         {

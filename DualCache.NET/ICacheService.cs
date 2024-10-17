@@ -6,5 +6,6 @@
         Task<T> GetAsync<T>(string key);
         Task RemoveAsync(string key);
         Task<T> GetOrAddAsync<T>(string key, Func<Task<T>> factory, TimeSpan? expiration = null);
+        Task<bool> ExistsAsync(string key);
     }
 }

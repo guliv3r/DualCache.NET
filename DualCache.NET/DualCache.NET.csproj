@@ -15,7 +15,7 @@
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<Company>Gulivera.Net</Company>
-	<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	<Authors>Albert Giulbaziani</Authors>
 	<Version>1.0.0</Version>
   </PropertyGroup>
 
