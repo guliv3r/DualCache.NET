@@ -72,12 +72,14 @@ public class ExampleService
         await _cacheService.RemoveAsync(key);
     }
 
-    public async Task<string> GetCachedOrDefaultValueAsync(string key)
+    public async Task<bool> KeyExist(string key)
     {
-        // Use GetOrAddAsync to either get the cached value or add a new one if it doesn't exist
-        var value = await _cacheService.GetOrAddAsync(key, TimeSpan.FromMinutes(15));  // Set cache expiration to 15 minutes
+        return await _cacheService.ExistsAsync(key);  // Set cache expiration to 15 minutes
+    }
 
-        return value;
+    public async Task RemoveCachedValue(string key)
+    {
+        await _cacheService.RemoveAsync(key);
     }
 }
 ```
