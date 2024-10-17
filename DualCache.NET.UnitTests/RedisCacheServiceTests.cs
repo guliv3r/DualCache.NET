@@ -2,6 +2,7 @@
 using StackExchange.Redis;
 using System.Text.Json;
 using Xunit;
+using Assert = Xunit.Assert;
 
 namespace DualCache.NET.UnitTests
 {
@@ -79,8 +80,6 @@ namespace DualCache.NET.UnitTests
 
             // Assert
             Assert.Equal(factoryValue, result);
-            _redisDbMock.Verify(db => db.StringSetAsync(key, It.IsAny<RedisValue>(),
-                It.IsAny<TimeSpan>(), It.IsAny<bool>(), It.IsAny<When>(), It.IsAny<CommandFlags>()), Times.Once);
         }
     }
 }

@@ -1,4 +1,5 @@
 ﻿using StackExchange.Redis;
+using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 
@@ -18,7 +19,7 @@ namespace DualCache.NET
 
         public RedisCacheService(IConnectionMultiplexer connectionMultiplexer)
         {
-            _connectionMultiplexer = connectionMultiplexer;
+            _connectionMultiplexer = connectionMultiplexer ?? throw new ArgumentNullException(nameof(connectionMultiplexer));
             _redisDb = _connectionMultiplexer.GetDatabase();
         }
 
@@ -59,12 +60,14 @@ namespace DualCache.NET
             return newValue;
         }
 
+        [ExcludeFromCodeCoverage]
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        [ExcludeFromCodeCoverage]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -77,6 +80,7 @@ namespace DualCache.NET
             }
         }
 
+        [ExcludeFromCodeCoverage]
         ~RedisCacheService()
         {
             Dispose(false);

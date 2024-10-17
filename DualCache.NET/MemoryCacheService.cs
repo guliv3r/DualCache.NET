@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using System.Diagnostics.CodeAnalysis;
 
 namespace DualCache.NET
 {
@@ -9,7 +10,7 @@ namespace DualCache.NET
 
         public MemoryCacheService(IMemoryCache memoryCache)
         {
-            _memoryCache = memoryCache;
+            _memoryCache = memoryCache ?? throw new ArgumentNullException(nameof(memoryCache));
         }
 
         public Task SetAsync<T>(string key, T value, TimeSpan? expiration = null)
@@ -57,12 +58,14 @@ namespace DualCache.NET
             return value;
         }
 
+        [ExcludeFromCodeCoverage]
         public void Dispose()
         {
             Dispose(true);
             GC.SuppressFinalize(this);
         }
 
+        [ExcludeFromCodeCoverage]
         protected virtual void Dispose(bool disposing)
         {
             if (!_disposed)
@@ -71,6 +74,7 @@ namespace DualCache.NET
             }
         }
 
+        [ExcludeFromCodeCoverage]
         ~MemoryCacheService()
         {
             Dispose(false);
