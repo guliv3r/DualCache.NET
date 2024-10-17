@@ -1,0 +1,42 @@
+name: Build & Test
+
+# This workflow triggers on every push to the repository.
+# It will run for any changes to:
+# - Source code in "src/**"
+# - Test code in "test/**"
+# - The workflow file itself ".github/workflows/build-test.yml"
+
+on:
+  push:
+    paths:
+    - "src/**"
+    - "test/**"
+    - ".github/workflows/build-test.yml"
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+    # Checkout the repository
+    - uses: actions/checkout@v3
+
+    # Setup .NET SDK 8.0
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v2
+      with:
+        dotnet-version: 8.0.x
+
+    # Restore project dependencies
+    - name: Restore dependencies
+      run: dotnet restore
+
+    # Build the solution
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+
+    # Run unit tests
+    - name: Test
+      run: dotnet test --no-build --verbosity normal --configuration Release

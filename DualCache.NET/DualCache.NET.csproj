@@ -11,7 +11,7 @@
 	<PackageLicenseUrl>https://github.com/guliv3r/DualCache.NET</PackageLicenseUrl>
 	<PackageProjectUrl>https://github.com/guliv3r/DualCache.NET</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/guliv3r/DualCache.NET</RepositoryUrl>
-	<PackageIconUrl>https://gulivera.net/DualCache.Net.png</PackageIconUrl>
+	<PackageIconUrl>https://gulivera.net/DualCache.Net-90x90.png</PackageIconUrl>
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<Company>Gulivera.Net</Company>
