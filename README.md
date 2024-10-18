@@ -74,7 +74,7 @@ public class ExampleService
 
     public async Task<bool> KeyExist(string key)
     {
-        return await _cacheService.ExistsAsync(key);  // Set cache expiration to 15 minutes
+        return await _cacheService.ExistsAsync(key);
     }
 
     public async Task RemoveCachedValue(string key)
