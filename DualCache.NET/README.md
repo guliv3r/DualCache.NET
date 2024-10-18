@@ -1,6 +1,6 @@
 # DualCache.NET
 
-![DualCache.NET Logo](https://gulivera.net/DualCache.Net-90x90.png)
+![DualCache.NET Logo](https://raw.githubusercontent.com/guliv3r/DualCache.NET/main/icon.png)
 
 **DualCache.NET** is a versatile caching library for .NET that provides seamless integration with both Redis and in-memory caching solutions. Enhance your application’s performance by reducing database load and improving response times effortlessly.
 
@@ -74,7 +74,7 @@ public class ExampleService
 
     public async Task<bool> KeyExist(string key)
     {
-        return await _cacheService.ExistsAsync(key);  // Set cache expiration to 15 minutes
+        return await _cacheService.ExistsAsync(key);
     }
 
     public async Task RemoveCachedValue(string key)
