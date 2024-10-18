@@ -1,6 +1,6 @@
 # DualCache.NET
 
-![DualCache.NET Logo](https://gulivera.net/DualCache.Net-90x90.png)
+![DualCache.NET Logo](icon.png)
 
 **DualCache.NET** is a versatile caching library for .NET that provides seamless integration with both Redis and in-memory caching solutions. Enhance your application’s performance by reducing database load and improving response times effortlessly.
 
