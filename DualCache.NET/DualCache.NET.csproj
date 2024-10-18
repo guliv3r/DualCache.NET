@@ -11,6 +11,8 @@
 	<PackageLicense>https://github.com/guliv3r/DualCache.NET</PackageLicense>
 	<PackageProjectUrl>https://github.com/guliv3r/DualCache.NET</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/guliv3r/DualCache.NET</RepositoryUrl>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	<PackageReadmeFile>README.md</PackageReadmeFile>
 	<PackageIcon>icon.png</PackageIcon>
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
@@ -30,6 +32,7 @@
 
 	<ItemGroup>
 		<None Include="icon.png" Pack="true" Visible="false" PackagePath="\" />
+		<None Include="README.md" Pack="true" Visible="false" PackagePath="\" />
 	</ItemGroup>
 	
 </Project>
