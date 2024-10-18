@@ -18,8 +18,14 @@ namespace DualCache.NET
         public Task SetAsync<T>(string key, T value, TimeSpan? expiration = null)
         {
             var cacheOptions = new MemoryCacheEntryOptions();
-            if (expiration.HasValue)
+            if (expiration.HasValue && expiration.Value <= TimeSpan.Zero)
+            {
+                expiration = null;
+            }
+            else 
+            {
                 cacheOptions.SetSlidingExpiration(expiration.Value);
+            }
 
             _memoryCache.Set(key, value, cacheOptions);
             return Task.CompletedTask;

@@ -31,6 +31,27 @@ namespace DualCache.NET
         }
 
         /// <summary>
+        /// Adds Redis caching services to the specified <see cref="IServiceCollection"/> using a connection string.
+        /// </summary>
+        /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>
+        /// <param name="redisConnectionString">The Redis connection string.</param>
+        /// <returns>The updated <see cref="IServiceCollection"/> with Redis caching services added.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when the Redis connection string is null or empty.</exception>
+        public static IServiceCollection AddRedisCache(this IServiceCollection services, string redisConnectionString)
+        {
+            if (string.IsNullOrEmpty(redisConnectionString))
+            {
+                throw new ArgumentNullException(nameof(redisConnectionString), "Redis connection string cannot be null or empty.");
+            }
+
+            services.AddSingleton<IConnectionMultiplexer>(sp =>
+                ConnectionMultiplexer.Connect(redisConnectionString));
+            services.AddSingleton<ICacheService, RedisCacheService>();
+
+            return services;
+        }
+
+        /// <summary>
         /// Adds custom memory caching services to the specified <see cref="IServiceCollection"/>.
         /// </summary>
         /// <param name="services">The <see cref="IServiceCollection"/> to add services to.</param>

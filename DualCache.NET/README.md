@@ -23,8 +23,12 @@ Install-Package DualCache.NET
 ```
 
 ## Configuration RedisCache
-To configure the cache service in your .NET application, you need to set it up in your Startup.cs or Program.cs file and in your appsettings.json, add the RedisConnection. 
+To configure the cache service in your .NET application, you can set it up in your `Startup.cs` or `Program.cs` file. You have two options for providing the Redis connection string: through the `appsettings.json` file or directly as a string.
+
 Here's how you can do it:
+### Option 1: Using appsettings.json
+If you want to use an `IConfiguration` instance, add the Redis connection string in your `appsettings.json` like this:
+
 ```json
 {
   "ConnectionStrings": {
@@ -34,6 +38,13 @@ Here's how you can do it:
 ```
 ```csharp
 builder.Services.AddRedisCache(Configuration);
+```
+
+### Option 2: Using a String Connection
+If you want to use an `IConfiguration` instance, add the Redis connection string in your `appsettings.json` like this:
+
+```csharp
+builder.Services.AddRedisCache("your_redis_connection_string");
 ```
 
 ## Configuration MemoryCache
