@@ -1,4 +1,7 @@
-﻿namespace DualCache.NET
+﻿using System;
+using System.Threading.Tasks;
+
+namespace DualCache.NET
 {
     public interface ICacheService : IDisposable
     {

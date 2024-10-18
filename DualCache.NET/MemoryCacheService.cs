@@ -1,5 +1,7 @@
 ﻿using Microsoft.Extensions.Caching.Memory;
+using System;
 using System.Diagnostics.CodeAnalysis;
+using System.Threading.Tasks;
 
 namespace DualCache.NET
 {
@@ -23,14 +25,14 @@ namespace DualCache.NET
             return Task.CompletedTask;
         }
 
-        public Task<T?> GetAsync<T>(string key)
+        public Task<T> GetAsync<T>(string key)
         {
             if (_memoryCache.TryGetValue(key, out T value))
             {
-                return Task.FromResult<T?>(value);
+                return Task.FromResult<T>(value);
             }
 
-            return Task.FromResult<T?>(default);
+            return Task.FromResult<T>(default);
         }
 
         public Task RemoveAsync(string key)

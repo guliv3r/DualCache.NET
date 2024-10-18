@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
+	<TargetFramework>netstandard2.1</TargetFramework>  
+    <ImplicitUsings>disable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	<Product>DualCache.NET</Product>
 	<Description>A flexible caching library for .NET that supports both Redis and in-memory caching. Easily integrate caching into your applications with simple interfaces and powerful features.</Description>
 	<PackageTags>caching, redis, memory cache, .NET library, dual cache</PackageTags>
 	<Copyright>Copyright © Gulivera.net 2024</Copyright>
-	<PackageLicenseUrl>https://github.com/guliv3r/DualCache.NET</PackageLicenseUrl>
+	<PackageLicense>https://github.com/guliv3r/DualCache.NET</PackageLicense>
 	<PackageProjectUrl>https://github.com/guliv3r/DualCache.NET</PackageProjectUrl>
 	<RepositoryUrl>https://github.com/guliv3r/DualCache.NET</RepositoryUrl>
-	<PackageIconUrl>https://gulivera.net/DualCache.Net-90x90.png</PackageIconUrl>
+	<PackageIcon>icon.png</PackageIcon>
 	<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<Company>Gulivera.Net</Company>
@@ -25,6 +25,11 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="8.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.2" />
     <PackageReference Include="StackExchange.Redis" Version="2.8.16" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
+	<ItemGroup>
+		<None Include="icon.png" Pack="true" Visible="false" PackagePath="\" />
+	</ItemGroup>
+	
 </Project>

@@ -3,6 +3,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Text.Json;
 using System.Text.Json.Serialization;
+using System.Threading.Tasks;
 
 namespace DualCache.NET
 {
@@ -12,11 +13,11 @@ namespace DualCache.NET
         private readonly IConnectionMultiplexer _connectionMultiplexer;
         private bool _disposed;
 
-        private static readonly JsonSerializerOptions SerializerOptions = new(new JsonSerializerOptions()
+        private static readonly JsonSerializerOptions SerializerOptions = new JsonSerializerOptions
         {
             DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
-            ReferenceHandler = ReferenceHandler.IgnoreCycles
-        });
+            ReferenceHandler = ReferenceHandler.Preserve
+        };
 
         public RedisCacheService(IConnectionMultiplexer connectionMultiplexer)
         {
@@ -73,7 +74,7 @@ namespace DualCache.NET
             }
         }
 
-        private static T? Deserialize<T>(RedisValue? value)
+        private static T Deserialize<T>(RedisValue? value)
         {
             if(value is null) { return default; }
 
