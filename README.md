@@ -12,6 +12,7 @@
 - **Simple Interface**: Easy-to-use methods for setting, retrieving, and removing cached items.
 - **GetOrAdd Functionality**: Automatically retrieve or create cached items, minimizing boilerplate code.
 - **Configuration Flexibility**: Easily configure caching options through dependency injection.
+- **Seamless Switching**: You can switch from RedisCache to MemoryCache without any code changes!
 
 ## Installation
 
@@ -38,7 +39,7 @@ builder.Services.AddRedisCache(Configuration);
 ## Configuration MemoryCache
 To inject memory cache, simply call:
 ```csharp
-builder.Services.AddMemoryCache();
+builder.Services.AddCustomMemoryCache();
 ```
 
 ## Usage
@@ -66,6 +67,13 @@ public class ExampleService
     {
         await _cacheService.SetAsync(key, value);
     }
+	
+	public async Task<string> GetOrAddAsync(string key)
+    {
+       return await _cacheService.GetOrAddAsync(
+                "key",
+                async () => await Task.FromResult<string>("value"));
+    }
 
     public async Task RemoveCachedValue(string key)
     {
@@ -75,11 +83,6 @@ public class ExampleService
     public async Task<bool> KeyExist(string key)
     {
         return await _cacheService.ExistsAsync(key);
-    }
-
-    public async Task RemoveCachedValue(string key)
-    {
-        await _cacheService.RemoveAsync(key);
     }
 }
 ```
