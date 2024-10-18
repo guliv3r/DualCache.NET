@@ -18,7 +18,7 @@
 	<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 	<Company>Gulivera.Net</Company>
 	<Authors>Albert Giulbaziani</Authors>
-	<Version>1.0.1</Version>
+	<Version>1.1.2</Version>
   </PropertyGroup>
 
   <ItemGroup>
